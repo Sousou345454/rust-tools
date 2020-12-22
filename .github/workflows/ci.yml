@@ -17,16 +17,17 @@ jobs:
         uses: actions-rs/toolchain@v1
         with:
           components: clippy, rustfmt
-          profile: minimal
           override: true
+          profile: minimal
+          toolchain: stable
 
       - name: Cache cargo directories
         uses: actions/cache@v2
         with:
+          key: ${{ runner.os }}-cargo-${{ hashFiles('**/Cargo.lock') }}
           path: |
             ~/.cargo/registry
             ~/.cargo/git
-          key: ${{ runner.os }}-cargo-${{ hashFiles('**/Cargo.lock') }}
 
       - name: Cache cargo target dir
         uses: actions/cache@v2
