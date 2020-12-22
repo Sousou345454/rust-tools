@@ -3,7 +3,7 @@ default = []
 
 [package]
 authors = ["Caio Fernandes <c410.f3r@gmail.com>"]
-categories = ["configuration"]
+categories = ["command-line-interface", "config"]
 description = "Rust tools"
 edition = "2018"
 keywords = ["ci", "tools"]
