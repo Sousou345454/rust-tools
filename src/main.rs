@@ -10,8 +10,8 @@ use action::Action;
 use error::Error;
 use std::{
     env::{args, Args},
-    io::{stderr, stdout, Write},
-    process::Command,
+    io::{stderr, stdout, BufRead, BufReader, Write},
+    process::{Command, Stdio},
 };
 
 type Result<T> = core::result::Result<T, Error>;
@@ -33,10 +33,25 @@ fn main() -> Result<()> {
     Ok(())
 }
 
-fn handle_cmd_output(cmd: &mut Command) -> Result<()> {
-    let output = cmd.output()?;
-    stdout().write_all(&output.stdout)?;
-    stderr().write_all(&output.stderr)?;
+fn handle_cmd_output(mut cmd: &mut Command) -> Result<()> {
+    cmd = cmd.stdin(Stdio::piped()).stdout(Stdio::piped());
+    let child = cmd.spawn()?;
+    let mut buffer = String::new();
+    macro_rules! write {
+        ($inner:expr, $output:expr) => {
+            let mut br = BufReader::new($inner);
+            while br.read_line(&mut buffer)? != 0 {
+                $output.write_all(buffer.as_bytes())?;
+                buffer.clear();
+            }
+        };
+    };
+    if let Some(child_stderr) = child.stderr {
+        write!(child_stderr, stderr());
+    }
+    if let Some(child_stdout) = child.stdout {
+        write!(child_stdout, stdout());
+    }
     Ok(())
 }
 

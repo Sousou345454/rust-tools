@@ -4,8 +4,8 @@ use core::fmt;
 pub enum Error {
     /// IO error
     Io(std::io::Error),
-    /// Unknown target
-    UnknownTarget,
+    /// Unknown action
+    UnknownAction,
     /// Wrong number of vars
     WrongNumberOfVars,
 }
@@ -22,7 +22,7 @@ impl fmt::Debug for Error {
     fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result {
         match *self {
             Self::Io(ref e) => write!(f, "IO: {}", e),
-            Self::UnknownTarget => write!(f, "Unknown target"),
+            Self::UnknownAction => write!(f, "Unknown action"),
             Self::WrongNumberOfVars => write!(f, "Wrong number of vars"),
         }
     }

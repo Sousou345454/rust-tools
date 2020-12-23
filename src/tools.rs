@@ -27,12 +27,6 @@ pub fn rustfmt() -> crate::Result<()> {
     handle_cmd_output(
         Command::new("echo").args(&["-e", r#"\e[0;33m***** Running rustfmt *****\e[0m\n"#]),
     )?;
-    handle_cmd_output(
-        Command::new("cargo")
-            .arg("fmt")
-            .arg("--all")
-            .arg("--")
-            .arg("--check"),
-    )?;
+    handle_cmd_output(Command::new("cargo").args(&["fmt", "--all", "--", "--check"]))?;
     Ok(())
 }

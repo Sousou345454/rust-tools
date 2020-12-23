@@ -23,7 +23,7 @@ impl FromStr for Action {
             "rustfmt" => Self::Rustfmt,
             "test-generic" => Self::TestGeneric,
             "test-with-features" => Self::TestWithFeatures,
-            _ => return Err(crate::Error::UnknownTarget),
+            _ => return Err(crate::Error::UnknownAction),
         })
     }
 }
