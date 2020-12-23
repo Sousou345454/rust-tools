@@ -69,5 +69,6 @@ macro_rules! create_fns {
     };
 }
 
+create_fns!("build", "Building", build_generic, build_with_features);
 create_fns!("check", "Checking", check_generic, check_with_features);
 create_fns!("test", "Testing", test_generic, test_with_features);

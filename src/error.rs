@@ -1,3 +1,4 @@
+use crate::Action;
 use core::fmt;
 
 /// Wraps all possible errors
@@ -7,7 +8,7 @@ pub enum Error {
     /// Unknown action
     UnknownAction,
     /// Wrong number of vars
-    WrongNumberOfVars,
+    WrongNumberOfArgs { expected: usize, received: usize },
 }
 
 impl From<std::io::Error> for Error {
@@ -22,8 +23,16 @@ impl fmt::Debug for Error {
     fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result {
         match *self {
             Self::Io(ref e) => write!(f, "IO: {}", e),
-            Self::UnknownAction => write!(f, "Unknown action"),
-            Self::WrongNumberOfVars => write!(f, "Wrong number of vars"),
+            Self::UnknownAction => write!(
+                f,
+                "Unknown action, please select one of the following possibilities: {}",
+                Action::list()
+            ),
+            Self::WrongNumberOfArgs { expected, received } => write!(
+                f,
+                "Wrong number of arguments. Expected {} but received {}",
+                expected, received
+            ),
         }
     }
 }

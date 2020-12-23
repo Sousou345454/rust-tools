@@ -18,13 +18,20 @@ type Result<T> = core::result::Result<T, Error>;
 
 fn main() -> Result<()> {
     let mut args = args();
-    let req = |args: &mut Args| args.next().ok_or(Error::WrongNumberOfVars);
+    let req = |args: &mut Args| {
+        args.next().ok_or(Error::WrongNumberOfArgs {
+            expected: 1,
+            received: 0,
+        })
+    };
     let opt = |args: &mut Args| args.next().unwrap_or_default();
     let _ = req(&mut args)?;
     match req(&mut args)?.parse()? {
-        Action::Clippy => tools::clippy(opt(&mut args), opt(&mut args))?,
-        Action::CheckWithFeatures => cargo::check_with_features(req(&mut args)?, opt(&mut args))?,
+        Action::BuildGeneric => cargo::build_generic(req(&mut args)?)?,
+        Action::BuildWithFeatures => cargo::build_with_features(req(&mut args)?, opt(&mut args))?,
         Action::CheckGeneric => cargo::check_generic(req(&mut args)?)?,
+        Action::CheckWithFeatures => cargo::check_with_features(req(&mut args)?, opt(&mut args))?,
+        Action::Clippy => tools::clippy(opt(&mut args), opt(&mut args))?,
         Action::RustFlags => rust_flags::rust_flags(opt(&mut args), opt(&mut args))?,
         Action::Rustfmt => tools::rustfmt()?,
         Action::TestGeneric => cargo::test_generic(req(&mut args)?)?,
