@@ -1,3 +1,6 @@
+[dependencies]
+pico-args = { default-features = false, version = "0.3" }
+
 [features]
 default = []
 

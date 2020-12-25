@@ -1,7 +1,7 @@
-use core::str::FromStr;
-
-macro_rules! create_action {
+macro_rules! create_enum_with_list {
     (
+        $err:expr;
+
         $(#[$mac:meta])*
         $v:vis enum $enum_ident:ident {
             $first_variant_ident:ident, $first_variant_str:literal;
@@ -24,7 +24,7 @@ macro_rules! create_action {
             }
         }
 
-        impl FromStr for Action {
+        impl core::str::FromStr for $enum_ident {
             type Err = crate::Error;
 
             #[inline]
@@ -32,24 +32,9 @@ macro_rules! create_action {
                 Ok(match s {
                     $first_variant_str => Self::$first_variant_ident,
                     $($variant_str => Self::$variant_ident,)*
-                    _ => return Err(crate::Error::UnknownAction),
+                    _ => return Err($err),
                 })
             }
         }
     }
 }
-
-create_action!(
-    #[derive(Debug)]
-    pub enum Action {
-        BuildGeneric, "build-generic";
-        BuildWithFeatures, "build-with-features";
-        CheckGeneric, "check-generic";
-        CheckWithFeatures, "check-with-features";
-        Clippy, "clippy";
-        RustFlags, "rust-flags";
-        Rustfmt, "rustfmt";
-        TestGeneric, "test-generic";
-        TestWithFeatures, "test-with-features";
-    }
-);
