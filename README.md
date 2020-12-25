@@ -1,4 +1,4 @@
-[![CI](https://github.com/c410-f3r/rust-tools/workflows/Tests/badge.svg)](https://github.com/c410-f3r/rust-tools/actions?query=workflow%3ATests)
+[![CI](https://github.com/c410-f3r/rust-tools/workflows/CI/badge.svg)](https://github.com/c410-f3r/rust-tools/actions?query=workflow%3ACI)
 [![crates.io](https://img.shields.io/crates/v/rust-tools.svg)](https://crates.io/crates/rust-tools)
 [![Documentation](https://docs.rs/rust-tools/badge.svg)](https://docs.rs/rust-tools)
 [![License](https://img.shields.io/badge/license-APACHE2-blue.svg)](./LICENSE)
