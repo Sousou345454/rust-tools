@@ -12,7 +12,7 @@ impl Actions {
       let mut file = File::create("rustfmt.toml")?;
       for rustfmt_flag in &self.params.rustfmt_flags {
         file.write_all(rustfmt_flag.as_bytes())?;
-        file.write_all("\n".as_bytes())?;
+        file.write_all(b"\n")?;
       }
     }
     Ok(())
