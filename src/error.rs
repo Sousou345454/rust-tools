@@ -2,6 +2,7 @@ use crate::{ActionOption, CfgOption};
 use core::fmt;
 
 pub enum Error {
+  FailedCommand,
   InvalidConfigurationFile,
   Io(std::io::Error),
   UnknownAction,
@@ -20,8 +21,9 @@ impl fmt::Debug for Error {
   #[inline]
   fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result {
     match *self {
-      Self::Io(ref e) => write!(f, "IO: {}", e),
+      Self::FailedCommand => write!(f, "A command wasn't successful"),
       Self::InvalidConfigurationFile => write!(f, "Invalid configuration file"),
+      Self::Io(ref e) => write!(f, "IO: {}", e),
       Self::UnknownAction => write!(
         f,
         "Unknown action, please select one of the following possibilities: {}",

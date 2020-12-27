@@ -2,9 +2,10 @@
 
 set -euxo pipefail
 
-export RUST_BACKTRACE=1
-export RUSTFLAGS="$(cargo run -- rust-flags)"
+rt='cargo run -- --template you-rust'
 
-cargo run -- rustfmt
-cargo run -- clippy
-cargo run -- test-generic .
+export RUSTFLAGS="$($rt rust-flags)"
+
+$rt rustfmt
+$rt clippy
+$rt test-generic .

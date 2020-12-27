@@ -1,5 +1,10 @@
 //! Rust tools
 
+#![allow(
+  // Doesn't make sense in separated files
+  clippy::multiple_inherent_impl
+)]
+
 #[macro_use]
 mod macros;
 
@@ -22,7 +27,7 @@ use std::{
   env::{args, Args},
   fs::File,
   io::{stderr, stdout, BufRead, BufReader, Write},
-  process::{Command, Stdio},
+  process::Command,
 };
 use transforming_params::TransformingParams;
 
@@ -62,11 +67,10 @@ fn main() -> Result<()> {
   Ok(())
 }
 
-fn handle_cmd_output(mut cmd: &mut Command) -> Result<()> {
-  cmd = cmd.stdin(Stdio::piped()).stdout(Stdio::piped());
-  let child = cmd.spawn()?;
+fn handle_cmd_output(cmd: &mut Command) -> Result<()> {
   let mut buffer = String::new();
-  macro_rules! write {
+  let mut child = cmd.spawn()?;
+  macro_rules! write_stdio {
     ($inner:expr, $output:expr) => {
       let mut br = BufReader::new($inner);
       while br.read_line(&mut buffer)? != 0 {
@@ -74,12 +78,15 @@ fn handle_cmd_output(mut cmd: &mut Command) -> Result<()> {
         buffer.clear();
       }
     };
-  };
-  if let Some(child_stderr) = child.stderr {
-    write!(child_stderr, stderr());
   }
-  if let Some(child_stdout) = child.stdout {
-    write!(child_stdout, stdout());
+  if let Some(ref mut child_stderr) = child.stderr {
+    write_stdio!(child_stderr, stderr());
+  }
+  if let Some(ref mut child_stdout) = child.stdout {
+    write_stdio!(child_stdout, stdout());
+  }
+  if !child.wait()?.success() {
+    return Err(crate::Error::FailedCommand);
   }
   Ok(())
 }
@@ -93,7 +100,7 @@ fn parse_action(
   action_string: String,
   params: Params,
   mut tp: TransformingParams,
-) -> crate::Result<()> {
+) -> Result<()> {
   let mut actions = Actions::new(params);
   match action_string.parse()? {
     ActionOption::BuildGeneric => {
