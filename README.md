@@ -8,7 +8,7 @@ A CLI intended to aid development and CI workflows. This project can be seen as 
 
 ## Configurations
 
-The application will primarily interact with a configuration, a collection of rules, that defines how tools should behave and there are three different sources:
+The application will primarily interact with a configuration (collection of rules) that defines how tools should behave and there are three different sources:
 
 ### Built-in configuration
 
