@@ -5,7 +5,7 @@ create_enum_with_list! {
 
     #[derive(Debug)]
     pub enum CfgOption {
-        YouRust, "you-rust";
+      YouRust, "you-rust";
     }
 }
 

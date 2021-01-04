@@ -4,7 +4,7 @@ set -euxo pipefail
 
 rt='cargo run -- --template you-rust'
 
-export RUSTFLAGS="$($rt rust-flags)"
+export RUSTFLAGS="$($rt rust-flags '' -Dunreachable_pub )"
 
 $rt rustfmt
 $rt clippy

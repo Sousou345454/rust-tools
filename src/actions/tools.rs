@@ -7,9 +7,9 @@ impl Actions {
       Command::new("echo").args(&["-e", r#"\e[0;33m***** Running clippy *****\e[0m\n"#]),
     )?;
     let mut cmd = Command::new("cargo");
-    cmd.args(&["clippy", "--all-features", "--"]);
-    cmd.args(&self.params.clippy_flags);
-    handle_cmd_output(&mut cmd)?;
+    handle_cmd_output(
+      cmd.args(&["clippy", "--all-features", "--"]).args(&self.params.clippy_flags),
+    )?;
     Ok(())
   }
 

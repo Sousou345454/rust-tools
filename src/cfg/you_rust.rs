@@ -39,7 +39,6 @@ const RUST_FLAGS: &[&str] = &[
   "-Dwarnings",
 ];
 
-
 const RUSTFMT_FLAGS: &[&str] = &[
   r#"edition="2018""#,
   "tab_spaces=2",
