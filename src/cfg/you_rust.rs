@@ -8,18 +8,37 @@ const CLIPPY_FLAGS: &[&str] = &[
 ];
 
 const RUST_FLAGS: &[&str] = &[
-  "-Dbad_style",
-  "-Dfuture_incompatible",
+  "-Dabsolute_paths_not_starting_with_crate",
+  "-Danonymous_parameters",
+  "-Delided_lifetimes_in_paths",
+  "-Dexplicit_outlives_requirements",
+  "-Dinvalid_html_tags",
+  "-Dkeyword_idents",
+  "-Dmacro_use_extern_crate",
+  "-Dmeta_variable_misuse",
+  "-Dmissing_crate_level_docs",
   "-Dmissing_debug_implementations",
+  "-Dmissing_doc_code_examples",
   "-Dmissing_docs",
-  "-Dnonstandard_style",
-  "-Drust_2018_compatibility",
-  "-Drust_2018_idioms",
+  "-Dnon_ascii_idents",
+  "-Dpointer_structural_match",
+  "-Dprivate_doc_tests",
   "-Dtrivial_casts",
+  "-Dtrivial_numeric_casts",
+  "-Dunaligned_references",
+  "-Dunreachable_pub",
+  "-Dunsafe_code",
+  "-Dunstable_features",
+  "-Dunused_crate_dependencies",
+  "-Dunused_extern_crates",
+  "-Dunused_import_braces",
   "-Dunused_lifetimes",
   "-Dunused_qualifications",
+  "-Dunused_results",
+  "-Dvariant_size_differences",
   "-Dwarnings",
 ];
+
 
 const RUSTFMT_FLAGS: &[&str] = &[
   r#"edition="2018""#,
