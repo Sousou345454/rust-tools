@@ -16,7 +16,7 @@ macro_rules! create_enum_with_list {
 
         impl $enum_ident {
             #[inline]
-            pub const fn list() -> &'static str {
+            pub(crate) const fn list() -> &'static str {
                 concat!(
                     $first_variant_str,
                     $(", ", $variant_str,)*

@@ -47,7 +47,7 @@ const RUSTFMT_FLAGS: &[&str] = &[
 ];
 
 #[derive(Debug, PartialEq)]
-pub struct YouRust(pub Params);
+pub(crate) struct YouRust(pub(crate) Params);
 
 impl Default for YouRust {
   fn default() -> Self {

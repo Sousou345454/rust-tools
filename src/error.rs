@@ -1,7 +1,7 @@
 use crate::{ActionOption, CfgOption};
 use core::fmt;
 
-pub enum Error {
+pub(crate) enum Error {
   FailedCommand,
   InvalidConfigurationFile,
   Io(std::io::Error),

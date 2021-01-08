@@ -1,3 +1,3 @@
 mod you_rust;
 
-pub use you_rust::YouRust;
+pub(crate) use you_rust::YouRust;

@@ -5,13 +5,13 @@ mod tools;
 
 use crate::Params;
 
-pub struct Actions {
-  pub params: Params,
+pub(crate) struct Actions {
+  pub(crate) params: Params,
 }
 
 impl Actions {
   #[inline]
-  pub fn new(params: Params) -> Self {
+  pub(crate) fn new(params: Params) -> Self {
     Self { params }
   }
 }

@@ -2,7 +2,7 @@ use crate::Actions;
 use std::{fs::File, io::Write};
 
 impl Actions {
-  pub fn set_up(&self) -> crate::Result<()> {
+  pub(crate) fn set_up(&self) -> crate::Result<()> {
     if !self.params.toolchain.is_empty() {
       let mut file = File::create("rust-toolchain")?;
       file.write_all(self.params.toolchain.as_bytes())?;

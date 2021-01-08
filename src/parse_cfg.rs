@@ -1,7 +1,7 @@
 use crate::{CfgOption, Params, TransformingParams};
 use std::io::{BufRead, BufReader, Read};
 
-pub fn parse_cfg<R>(read: R) -> crate::Result<(Params, TransformingParams)>
+pub(crate) fn parse_cfg<R>(read: R) -> crate::Result<(Params, TransformingParams)>
 where
   R: Read,
 {

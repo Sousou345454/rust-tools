@@ -5,7 +5,7 @@ macro_rules! create_fns {
   (
     $cargo_action:literal, $info:literal, $generic_fn:ident, $with_features_fn:ident
   ) => {
-    pub fn $generic_fn(&self, package: String) -> crate::Result<()> {
+    pub(crate) fn $generic_fn(&self, package: String) -> crate::Result<()> {
       handle_cmd_output(Command::new("echo").args(&[
         "-e",
         &format!(
@@ -36,7 +36,7 @@ macro_rules! create_fns {
       Ok(())
     }
 
-    pub fn $with_features_fn(&self, package: String, features: String) -> crate::Result<()> {
+    pub(crate) fn $with_features_fn(&self, package: String, features: String) -> crate::Result<()> {
       handle_cmd_output(Command::new("echo").args(&[
         "-e",
         &format!(

@@ -2,7 +2,7 @@ create_enum_with_list! {
     crate::Error::UnknownAction;
 
     #[derive(Debug)]
-    pub enum ActionOption {
+    pub(crate) enum ActionOption {
         BuildGeneric, "build-generic";
         BuildWithFeatures, "build-with-features";
         CheckGeneric, "check-generic";
