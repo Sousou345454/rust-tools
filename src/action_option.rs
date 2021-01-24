@@ -3,6 +3,7 @@ create_enum_with_list! {
 
     #[derive(Debug)]
     pub(crate) enum ActionOption {
+        BuildDir, "build-dir";
         BuildGeneric, "build-generic";
         BuildWithFeatures, "build-with-features";
         CheckGeneric, "check-generic";

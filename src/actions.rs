@@ -1,3 +1,4 @@
+mod build_dir;
 mod cargo;
 mod rust_flags;
 mod set_up;
