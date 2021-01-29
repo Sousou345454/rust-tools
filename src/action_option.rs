@@ -3,7 +3,6 @@ create_enum_with_list! {
 
     #[derive(Debug)]
     pub(crate) enum ActionOption {
-        BuildDir, "build-dir";
         BuildGeneric, "build-generic";
         BuildWithFeatures, "build-with-features";
         CheckGeneric, "check-generic";
@@ -12,6 +11,7 @@ create_enum_with_list! {
         RustFlags, "rust-flags";
         Rustfmt, "rustfmt";
         SetUp, "set-up";
+        TargetDir, "target-dir";
         TestGeneric, "test-generic";
         TestWithFeatures, "test-with-features";
     }

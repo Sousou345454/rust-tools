@@ -103,10 +103,6 @@ fn parse_action(
 ) -> Result<()> {
   let mut actions = Actions::new(params);
   match action_string.parse()? {
-    ActionOption::BuildDir => {
-      actions.params.modify(&tp);
-      actions.build_dir()?;
-    }
     ActionOption::BuildGeneric => {
       actions.params.modify(&tp);
       actions.build_generic(req(args)?)?;
@@ -142,6 +138,10 @@ fn parse_action(
     ActionOption::SetUp => {
       actions.params.modify(&tp);
       actions.set_up()?;
+    }
+    ActionOption::TargetDir => {
+      actions.params.modify(&tp);
+      actions.target_dir()?;
     }
     ActionOption::TestGeneric => {
       actions.params.modify(&tp);

@@ -1,7 +1,7 @@
-mod build_dir;
 mod cargo;
 mod rust_flags;
 mod set_up;
+mod target_dir;
 mod tools;
 
 use crate::Params;
