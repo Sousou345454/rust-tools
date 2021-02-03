@@ -3,7 +3,6 @@ use core::fmt;
 
 pub(crate) enum Error {
   FailedCommand,
-  InvalidConfigurationFile,
   Io(std::io::Error),
   UnknownAction,
   UnknownCfg,
@@ -22,7 +21,6 @@ impl fmt::Debug for Error {
   fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result {
     match *self {
       Self::FailedCommand => write!(f, "A command wasn't successful"),
-      Self::InvalidConfigurationFile => write!(f, "Invalid configuration file"),
       Self::Io(ref e) => write!(f, "IO: {}", e),
       Self::UnknownAction => write!(
         f,
