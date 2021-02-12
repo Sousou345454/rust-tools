@@ -3,6 +3,7 @@ use crate::Params;
 const CLIPPY_FLAGS: &[&str] = &[
   "-Dclippy::restriction",
   "-Dwarnings",
+  "-Aclippy::exhaustive_structs",
   "-Aclippy::implicit_return",
   "-Aclippy::missing_docs_in_private_items",
 ];
