@@ -8,6 +8,7 @@ const CLIPPY_FLAGS: &[&str] = &[
   "-Aclippy::implicit_return",
   "-Aclippy::missing_docs_in_private_items",
   "-Aclippy::self_named_module_files",
+  "-Aclippy::unseparated_literal_suffix",
 ];
 
 const RUST_FLAGS: &[&str] = &[
