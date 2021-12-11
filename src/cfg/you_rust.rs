@@ -7,6 +7,7 @@ const CLIPPY_FLAGS: &[&str] = &[
   "-Aclippy::exhaustive_structs",
   "-Aclippy::implicit_return",
   "-Aclippy::missing_docs_in_private_items",
+  "-Aclippy::self_named_module_files",
 ];
 
 const RUST_FLAGS: &[&str] = &[
